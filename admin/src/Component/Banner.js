@@ -96,13 +96,40 @@ export default function Category() {
       console.log("Error in getbanner:", error);
     }
   };
+
+  const handleAddBanner = async () => {
+    try { 
+  
+      const url = `https://api.vijayhomeservice.com/api/website/addwebnewbanner`;
+
+      const config = {
+        url,
+        method: "post",
+        data: {
+          webbanner: CateLink,
+        },
+      };
+      const res = await axios(config);
+      if (res.status === 200) {
+        alert("Banner added successfully");
+        setOpen(false);
+        getbanner();
+        window.location.reload("");
+      }
+    } catch (error) {
+      console.log("Error in handleSaveOrUpdate:", error);
+    }
+  };
   return (
     <div className="row m-auto p-2">
       <div className="row text-center">
-        {/* <div className="col-md-3 d-flex m-auto">
-          <span className="m-auto text-bold">Webbanner Management </span>
-          <MdOutlineLibraryAdd onClick={handleAddCategory} className="m-auto" />
-        </div> */}
+        <div className="col-md-3 d-flex m-auto">
+          <span className="m-auto text-bold">Web banner Management </span>
+          <MdOutlineLibraryAdd
+            onClick={() => setOpen(true)}
+            className="m-auto"
+          />
+        </div>
       </div>
       <DataTable columns={columns} data={bannerData} pagination={true} />
 
@@ -129,12 +156,30 @@ export default function Category() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setOpen(false)}>
+          <Button
+            className="col-md-2 me-auto"
+            variant="secondary"
+            onClick={() => setOpen(false)}
+          >
             Close
           </Button>
-          <Button variant="primary" onClick={handleSaveOrUpdate}>
-            {Edit ? "Update" : "Save"}
-          </Button>
+          {Edit ? (
+            <Button
+              className="col-md-2"
+              variant="primary"
+              onClick={handleSaveOrUpdate}
+            >
+              update
+            </Button>
+          ) : (
+            <Button
+              className="col-md-2"
+              variant="primary"
+              onClick={handleAddBanner}
+            >
+              save
+            </Button>
+          )}
         </Modal.Footer>
       </Modal>
     </div>

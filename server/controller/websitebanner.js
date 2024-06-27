@@ -18,10 +18,27 @@ class weBbanner {
       console.log(error);
     }
   }
+  async postAddNewWebbanner(req, res) {
+    let { category, webbanner } = req.body;
+
+    try {
+      let newbanner = new webBannermodel({
+        category,
+        webbanner,
+      });
+
+      let save = newbanner.save();
+
+      if (save) {
+        return res.json({ success: "banner added successfully" });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async getallwebbanner(req, res) {
-
-    let banner = await webBannermodel.find({ }).sort({_id:-1});
+    let banner = await webBannermodel.find({}).sort({ _id: -1 });
 
     if (banner) {
       return res.json({ banner: banner });
@@ -66,7 +83,6 @@ class weBbanner {
       return res.status(500).json({ error: "Unable to update the Category" });
     }
   }
-
 }
 
 const weBbannerController = new weBbanner();

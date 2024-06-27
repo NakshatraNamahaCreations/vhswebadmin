@@ -150,10 +150,10 @@ export default function SubSubCategory() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setOpen(false)}>
+          <Button className="col-md-2 me-auto"  variant="secondary" onClick={() => setOpen(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSaveOrUpdate}>
+          <Button className="col-md-2 "  variant="primary" onClick={handleSaveOrUpdate}>
             {Edit ? "Update" : "Save"}
           </Button>
         </Modal.Footer>

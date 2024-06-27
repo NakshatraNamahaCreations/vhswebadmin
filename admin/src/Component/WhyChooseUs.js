@@ -211,15 +211,15 @@ export default function WhyChooseUs() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setOpen(false)}>
+          <Button className="col-md-2 me-auto"  variant="secondary" onClick={() => setOpen(false)}>
             Close
           </Button>
           {Edit ? (
-            <Button variant="primary" onClick={handleSaveOrUpdate}>
+            <Button className="col-md-2"  variant="primary" onClick={handleSaveOrUpdate}>
               Update
             </Button>
           ) : (
-            <Button variant="primary" onClick={handleAddWhyChoose}>
+            <Button className="col-md-2"  variant="primary" onClick={handleAddWhyChoose}>
               Save
             </Button>
           )}

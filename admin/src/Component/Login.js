@@ -53,10 +53,10 @@ const Login = () => {
           </div>
           <button type="submit">Login</button>
         </form>
-        {message && <p>{message}</p>}
-        <p>
+        {/* {message && <p>{message}</p>} */}
+        {/* <p>
           Don't have an account? <Link to="/signup">Register</Link>
-        </p>
+        </p> */}
       </div>
     </div>
   );

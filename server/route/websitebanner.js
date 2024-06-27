@@ -20,11 +20,15 @@ router.post(
   upload.single("banner"),
   webbannerController.postaddwebbanner
 );
+router.post(
+  "/addwebnewbanner",
+  webbannerController.postAddNewWebbanner
+);
+
 router.get("/getallwebbanner", webbannerController.getallwebbanner);
 router.post("/deletewebbanner/:id", webbannerController.postdeletewebbanner);
 
 // by hema
 router.put("/updatebanner/:ccid", webbannerController.updatebanner);
-
 
 module.exports = router;
