@@ -22,11 +22,11 @@ export default function Testimonials() {
 
   const columns = [
     {
-      name: "Testomonial name",
+      name: "Testimonial name",
       selector: (row) => row.Testimonialname,
     },
     {
-      name: "Title",
+      name: "Service name",
       selector: (row) => row.title,
     },
 
@@ -92,7 +92,7 @@ export default function Testimonials() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/testimonial/updatedtestimonial/${
+      const url = `http://localhost:8900/api/testimonial/updatedtestimonial/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -120,7 +120,7 @@ export default function Testimonials() {
   const handleAddTestimonial = async () => {
     try {
       const config = {
-        url: "https://api.vijayhomeservice.com/api/testimonial/addtestimonial",
+        url: "http://localhost:8900/api/testimonial/addtestimonial",
         headers: { "Content-Type": "application/json" },
         method: "post",
         data: {
@@ -157,7 +157,7 @@ export default function Testimonials() {
   const getWhyChooose = async () => {
     try {
       const res = await axios.get(
-        "https://api.vijayhomeservice.com/api/testimonial/getalltestimonial"
+        "http://localhost:8900/api/testimonial/getalltestimonial"
       );
       setTestimonial(res.data.data);
     } catch (error) {
@@ -168,7 +168,7 @@ export default function Testimonials() {
   const handleDelete = async (row) => {
     try {
       const res = await axios.post(
-        `https://api.vijayhomeservice.com/api/testimonial/deletetestimonial/${row._id}`
+        `http://localhost:8900/api/testimonial/deletetestimonial/${row._id}`
       );
       if (res.status === 200) {
         alert("Deleted Succesfully");
@@ -219,7 +219,7 @@ export default function Testimonials() {
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
-            <Form.Label>Testimonial name</Form.Label>
+            <Form.Label>User Name</Form.Label>
             <Form.Control
               onChange={handleChange}
               type="text"
@@ -231,7 +231,7 @@ export default function Testimonials() {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Title</Form.Label>
+            <Form.Label>Service Name</Form.Label>
             <Form.Control
               onChange={handleChange}
               type="text"
@@ -242,7 +242,7 @@ export default function Testimonials() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>videolink Link</Form.Label>
+            <Form.Label>Video Link</Form.Label>
             <Form.Control
               onChange={handleChange}
               type="text"
@@ -265,15 +265,27 @@ export default function Testimonials() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="col-md-2 me-auto"  variant="secondary" onClick={() => setOpen(false)}>
+          <Button
+            className="col-md-2 me-auto"
+            variant="secondary"
+            onClick={() => setOpen(false)}
+          >
             Close
           </Button>
           {Edit ? (
-            <Button className="col-md-2 "  variant="primary" onClick={handleSaveOrUpdate}>
+            <Button
+              className="col-md-2 "
+              variant="primary"
+              onClick={handleSaveOrUpdate}
+            >
               Update
             </Button>
           ) : (
-            <Button className="col-md-2 "  variant="primary" onClick={handleAddTestimonial}>
+            <Button
+              className="col-md-2 "
+              variant="primary"
+              onClick={handleAddTestimonial}
+            >
               Save
             </Button>
           )}

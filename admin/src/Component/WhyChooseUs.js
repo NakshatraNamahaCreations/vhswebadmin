@@ -57,7 +57,7 @@ export default function WhyChooseUs() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/whyChoose/updatewhychoose/${
+      const url = `http://localhost:8900/api/whyChoose/updatewhychoose/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -84,7 +84,7 @@ export default function WhyChooseUs() {
   const handleAddWhyChoose = async () => {
     try {
       const config = {
-        url: "https://api.vijayhomeservice.com/api/whyChoose/addwhychoose",
+        url: "http://localhost:8900/api/whyChoose/addwhychoose",
         headers: { "Content-Type": "application/json" },
         method: "post",
         data: {
@@ -119,7 +119,7 @@ export default function WhyChooseUs() {
   const getWhyChooose = async () => {
     try {
       const res = await axios.get(
-        "https://api.vijayhomeservice.com/api/whychoose/getallwhychoose"
+        "http://localhost:8900/api/whychoose/getallwhychoose"
       );
       setWhyChoose(res.data.data);
     } catch (error) {
@@ -130,7 +130,7 @@ export default function WhyChooseUs() {
   const handleDelete = async (row) => {
     try {
       const res = await axios.post(
-        `https://api.vijayhomeservice.com/api/whychoose/deletewhychoose/${row._id}`
+        `http://localhost:8900/api/whychoose/deletewhychoose/${row._id}`
       );
       if (res.status === 200) {
         alert("Deleted Succesfully");

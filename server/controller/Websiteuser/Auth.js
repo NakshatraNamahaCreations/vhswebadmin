@@ -33,7 +33,7 @@ class adminlogin {
     }
     try {
       const data = await adminloginmodel.findOne({ email });
-    //   console.log(data, "data");
+      console.log(data, "data");
       if (!data) {
         return res.status(400).json({
           error: "Invalid Email",

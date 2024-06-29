@@ -12,7 +12,8 @@ export default function Category() {
   const [CateLink, setCateLink] = useState("");
   const [SelectCate, setSelectCate] = useState("");
   const [Edit, setEdit] = useState(null);
-
+  const [filterData, setfilterData] = useState([]);
+  const [SearchValue, setSearchValue] = useState("");
   const columns = [
     {
       name: "Category",
@@ -25,9 +26,7 @@ export default function Category() {
 
     {
       name: "Website Image",
-      selector: (row) => (
-        <img width={100} height={100} src={row?.imglink}  />
-      ),
+      selector: (row) => <img width={100} height={100} src={row?.imglink} />,
     },
     {
       name: "Action",
@@ -50,7 +49,7 @@ export default function Category() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/userapp/updatesublink/${
+      const url = `http://localhost:8900/api/userapp/updatesublink/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -82,7 +81,9 @@ export default function Category() {
 
   const getSubcategory = async () => {
     try {
-      const res = await axios.get("https://api.vijayhomeservice.com/api/userapp/getappsubcat");
+      const res = await axios.get(
+        "http://localhost:8900/api/userapp/getappsubcat"
+      );
       setSubCategory(res.data.subcategory);
       // console.log(res.data);
       // console.log(res);
@@ -96,16 +97,31 @@ export default function Category() {
     setOpen(true);
   };
   // console.log(SubCategory);
-
+  useEffect(() => {
+    let value = SearchValue.toLowerCase();
+    let data = SubCategory.filter((ele) =>
+      ele?.subcategory?.toLowerCase()?.includes(value)
+    );
+    setfilterData(data);
+  }, [SubCategory, SearchValue]);
   return (
     <div className="row m-auto p-2">
       <div className="row text-center">
-        <div className="col-md-3 d-flex m-auto">
+        {/* <div className="col-md-3 d-flex m-auto">
           <span className="m-auto text-bold">Subcategory Management </span>
-          <MdOutlineLibraryAdd onClick={handleAddCategory} className="m-auto cursor" />
+          <MdOutlineLibraryAdd
+            onClick={handleAddCategory}
+            className="m-auto cursor"
+          />
+        </div> */}
+          <div className="col-md-2">
+          <Form.Control
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search by subcategory"
+          />
         </div>
       </div>
-      <DataTable columns={columns} data={SubCategory} pagination={true} />
+      <DataTable className="mt-2" columns={columns} data={filterData} pagination={true} />
 
       <Modal
         show={open}
@@ -114,13 +130,15 @@ export default function Category() {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>{Edit ? "Edit Subcategory" : "Add Subcategory"} </Modal.Title>
+          <Modal.Title>
+            {Edit ? "Edit Subcategory" : "Add Subcategory"}{" "}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
             <Form.Label>Subcategory</Form.Label>
             {Edit ? (
-              <Form.Control value={Edit.category} readOnly />
+              <Form.Control value={Edit.subcategory} readOnly />
             ) : (
               <Form.Select
                 value={SelectCate}
@@ -146,10 +164,18 @@ export default function Category() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="col-md-2 me-auto"  variant="secondary" onClick={() => setOpen(false)}>
+          <Button
+            className="col-md-2 me-auto"
+            variant="secondary"
+            onClick={() => setOpen(false)}
+          >
             Close
           </Button>
-          <Button className="col-md-2 "  variant="primary" onClick={handleSaveOrUpdate}>
+          <Button
+            className="col-md-2 "
+            variant="primary"
+            onClick={handleSaveOrUpdate}
+          >
             {Edit ? "Update" : "Save"}
           </Button>
         </Modal.Footer>

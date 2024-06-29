@@ -21,7 +21,12 @@ export default function Offer() {
     },
     {
       name: "Offer",
-      selector: (row) => <span>{row.offer} %</span>,
+      selector: (row) => (
+        <span>
+          {" "}
+          <img src={row.offer} width={50} height={50} />{" "}
+        </span>
+      ),
     },
 
     {
@@ -49,7 +54,7 @@ export default function Offer() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/offer/updatedoffer/${
+      const url = `http://localhost:8900/api/offer/updatedoffer/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -75,7 +80,7 @@ export default function Offer() {
   const handleAddCreations = async () => {
     try {
       const config = {
-        url: "https://api.vijayhomeservice.com/api/offer/addwebdoffer",
+        url: "http://localhost:8900/api/offer/addwebdoffer",
         headers: { "Content-Type": "application/json" },
         method: "post",
         data: {
@@ -106,7 +111,7 @@ export default function Offer() {
 
   const getcategory = async () => {
     try {
-      const res = await axios.get("https://api.vijayhomeservice.com/api/getcategory");
+      const res = await axios.get("http://localhost:8900/api/getcategory");
       setCategory(res.data.category);
     } catch (error) {
       console.log("Error in getcategory:", error);
@@ -116,7 +121,7 @@ export default function Offer() {
   const getCreations = async () => {
     try {
       const res = await axios.get(
-        "https://api.vijayhomeservice.com/api/offer/getallwebdoffer"
+        "http://localhost:8900/api/offer/getallwebdoffer"
       );
       setCreationData(res.data.offer);
     } catch (error) {
@@ -127,7 +132,7 @@ export default function Offer() {
   const handleDelete = async (row) => {
     try {
       const res = await axios.post(
-        `https://api.vijayhomeservice.com/api/offer/deletewebdoffer/${row._id}`
+        `http://localhost:8900/api/offer/deletewebdoffer/${row._id}`
       );
       if (res.status === 200) {
         alert("Deleted Succesfully");
@@ -194,15 +199,27 @@ export default function Offer() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="col-md-2 me-auto"  variant="secondary" onClick={() => setOpen(false)}>
+          <Button
+            className="col-md-2 me-auto"
+            variant="secondary"
+            onClick={() => setOpen(false)}
+          >
             Close
           </Button>
           {Edit ? (
-            <Button className="col-md-2 "  variant="primary" onClick={handleSaveOrUpdate}>
+            <Button
+              className="col-md-2 "
+              variant="primary"
+              onClick={handleSaveOrUpdate}
+            >
               Update
             </Button>
           ) : (
-            <Button className="col-md-2 "  variant="primary" onClick={handleAddCreations}>
+            <Button
+              className="col-md-2 "
+              variant="primary"
+              onClick={handleAddCreations}
+            >
               Save
             </Button>
           )}

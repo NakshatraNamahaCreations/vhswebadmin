@@ -1,17 +1,13 @@
 const serviceManagementModel = require("../../model/userapp/serviceMangament");
 
 class serviceManagement {
-
-
   async getserviceManagementpagewise(req, res) {
     try {
-
-  
       const page = parseInt(req.query.page) || 1;
       const pageSize = 15;
       const skip = (page - 1) * pageSize;
       const searchQuery = req.query.search || "";
-  
+
       const filter = {
         $or: [
           { category: { $regex: searchQuery, $options: "i" } },
@@ -23,22 +19,21 @@ class serviceManagement {
       const totalRecords = await serviceManagementModel.countDocuments(filter);
       // Corrected index creation for _id field
       serviceManagementModel.collection.createIndex({ _id: 1 });
-  
+
       // Projection for excluding unnecessary fields
       const projection = { customerData: 1, category: 1, service: 1, city: 1 };
-  
+
       // Use lean for plain JavaScript objects instead of Mongoose documents
       const service = await serviceManagementModel
         .find(filter, projection)
         .sort({ _id: -1 })
         .skip(skip)
         .limit(pageSize)
-        .select(" category Subcategory sub_subcategory serviceName serviceHour serviceImg serviceDesc serviceIncludes serviceExcludes serviceDirection  morepriceData") // Include only necessary fields
+        .select(
+          " category Subcategory sub_subcategory serviceName serviceHour serviceImg serviceDesc serviceIncludes serviceExcludes serviceDirection  morepriceData"
+        ) // Include only necessary fields
         .lean();
-  
 
-  
-    
       if (service.length > 0) {
         const responseData = { service, totalRecords, currentPage: page };
         return res.status(200).json(responseData);
@@ -47,7 +42,9 @@ class serviceManagement {
       }
     } catch (error) {
       console.error("Error in API:", error);
-      return res.status(500).json({ message: "Internal server error.", error: error.message });
+      return res
+        .status(500)
+        .json({ message: "Internal server error.", error: error.message });
     }
   }
 
@@ -62,11 +59,10 @@ class serviceManagement {
       serviceManagementModel.collection.createIndex({ _id: 1 });
 
       let servicedetail = await serviceManagementModel.findById(id);
-    
+
       if (servicedetail) {
         return res.json({ servicedetail: servicedetail });
       } else {
-        
         return res.status(404).json({ message: "Service detail not found" });
       }
     } catch (error) {
@@ -78,21 +74,20 @@ class serviceManagement {
   async findwithidretunslots(req, res) {
     try {
       const id = req.params.id;
-  
+
       if (!id) {
         return res.status(400).json({ error: "ID parameter is missing" });
       }
-  
-      serviceManagementModel.collection.createIndex({ _id: 1 });
-  
-      // Specify the fields you want to include or exclude in the projection
-      let servicedetail = await serviceManagementModel.findById(id)
-        .select({
-          store_slots: 1,  // Include field1
 
-          _id: 0,     // Exclude _id
-        });
-  
+      serviceManagementModel.collection.createIndex({ _id: 1 });
+
+      // Specify the fields you want to include or exclude in the projection
+      let servicedetail = await serviceManagementModel.findById(id).select({
+        store_slots: 1, // Include field1
+
+        _id: 0, // Exclude _id
+      });
+
       if (servicedetail) {
         return res.json({ slots: servicedetail });
       } else {
@@ -103,7 +98,6 @@ class serviceManagement {
       return res.status(500).json({ error: "Internal Server Error" });
     }
   }
-  
 
   async addserviceManagement(req, res) {
     let {
@@ -321,9 +315,8 @@ class serviceManagement {
       let file1 = req.files[1]?.filename;
       let file2 = req.files[2]?.filename;
       let file3 = req.files[3]?.filename;
-      
-      serviceManagementModel.collection.createIndex({ _id: 1 });
 
+      serviceManagementModel.collection.createIndex({ _id: 1 });
 
       const findService = await serviceManagementModel.findOne({
         _id: serviceId,
@@ -498,8 +491,6 @@ class serviceManagement {
     }
   }
 
-
-
   async getserviceNameManagement(req, res) {
     try {
       let services = await serviceManagementModel
@@ -628,7 +619,6 @@ class serviceManagement {
       }
 
       findCategory.imglink = imglink || findCategory.imglink;
-      
 
       const updateCategory = await serviceManagementModel.findOneAndUpdate(
         { _id: categoryId },
@@ -642,6 +632,37 @@ class serviceManagement {
     } catch (error) {
       // console.log("error", error);
       return res.status(500).json({ error: "Unable to update the Category" });
+    }
+  }
+
+  async postsubcategory(req, res) {
+    let { Subcategory } = req.body;
+
+    let data = await serviceManagementModel.find({ Subcategory });
+
+    if (data) {
+      return res.json({ subcatdata: data });
+    }
+  }
+  async getServiceData(req, res) {
+    let data = await serviceManagementModel.find();
+
+    if (data) {
+      return res.json({ categorydata: data });
+    }
+  }
+  async getserviceName(req, res) {
+    try {
+      let services = await serviceManagementModel
+        .find({}, "imglink category serviceName Subcategory")
+        .sort({ _id: -1 });
+      console.log(services, "services");
+      if (services) {
+        return res.json({ services: services });
+      }
+    } catch (error) {
+      // Handle any potential errors
+      return res.status(500).json({ error: error.message });
     }
   }
 }

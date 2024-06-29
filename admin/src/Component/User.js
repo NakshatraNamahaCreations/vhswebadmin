@@ -47,7 +47,7 @@ export default function UserData() {
 
   const getusers = async () => {
     try {
-      const res = await axios.get("https://api.vijayhomeservice.com/api/getbywebsite");
+      const res = await axios.get("http://localhost:8900/api/getbywebsite");
       setcustomerData(res.data.customers);
     
     } catch (error) {

@@ -36,7 +36,7 @@ export default function Category() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/website/updatebanner/${
+      const url = `http://localhost:8900/api/website/updatebanner/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -69,7 +69,7 @@ export default function Category() {
   const getbanner = async () => {
     try {
       const res = await axios.get(
-        "https://api.vijayhomeservice.com/api/website/getallwebbanner"
+        "http://localhost:8900/api/website/getallwebbanner"
       );
       setbannerData(res.data.banner);
     } catch (error) {
@@ -85,7 +85,7 @@ export default function Category() {
   const handleDelete = async (row) => {
     try {
       const res = await axios.post(
-        `https://api.vijayhomeservice.com/api/website/deletewebbanner/${row._id}`
+        `http://localhost:8900/api/website/deletewebbanner/${row._id}`
       );
       if (res.status === 200) {
         alert("Deleted Succesfully");
@@ -100,7 +100,7 @@ export default function Category() {
   const handleAddBanner = async () => {
     try { 
   
-      const url = `https://api.vijayhomeservice.com/api/website/addwebnewbanner`;
+      const url = `http://localhost:8900/api/website/addwebnewbanner`;
 
       const config = {
         url,

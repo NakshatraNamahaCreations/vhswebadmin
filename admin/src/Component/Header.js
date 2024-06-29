@@ -26,7 +26,7 @@ export default function Header() {
                 ? "active navlink-btn p-1 me-2"
                 : "navlink-btn p-1 me-2"
             }`}
-            to="/"
+            to="/user"
           >
             Users
           </Link>

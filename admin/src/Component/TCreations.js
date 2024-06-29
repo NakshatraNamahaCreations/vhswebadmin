@@ -14,14 +14,12 @@ export default function TCreations() {
   const [SelectCate, setSelectCate] = useState("");
   const [Edit, setEdit] = useState(null);
 
-  const defaultCategory = "Default Category"; // Set your default category here
-
   const columns = [
     {
       name: "Category",
       selector: (row) => row.category,
     },
-   
+
     {
       name: "Video Link",
       selector: (row) => {
@@ -38,6 +36,7 @@ export default function TCreations() {
           }
           return embedUrl;
         };
+        // creationslink
 
         const embedUrl = getEmbedUrl(row.creationslink);
         return (
@@ -61,7 +60,8 @@ export default function TCreations() {
         <>
           <span className="me-1 edit cursor" onClick={() => handleEdit(row)}>
             Edit
-          </span>  <span className="m-auto me-1 text-bold">|</span>
+          </span>{" "}
+          <span className="m-auto me-1 text-bold">|</span>
           <span className="delete cursor" onClick={() => handleDelete(row)}>
             Delete
           </span>
@@ -71,15 +71,15 @@ export default function TCreations() {
   ];
 
   const handleAddCategory = () => {
-    setEdit(null); // Reset edit state
-    setSelectCate(defaultCategory); // Set default category
+    setEdit(null);
+    setSelectCate();
     setCateLink("");
     setOpen(true);
   };
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/creation/updatecreation/${
+      const url = `http://localhost:8900/api/creation/updatecreation/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -105,7 +105,7 @@ export default function TCreations() {
   const handleAddCreations = async () => {
     try {
       const config = {
-        url: "https://api.vijayhomeservice.com/api/creation/addwebcreation",
+        url: "http://localhost:8900/api/creation/addwebcreation",
         headers: { "Content-Type": "application/json" },
         method: "post",
         data: {
@@ -136,7 +136,7 @@ export default function TCreations() {
 
   const getcategory = async () => {
     try {
-      const res = await axios.get("https://api.vijayhomeservice.com/api/getcategory");
+      const res = await axios.get("http://localhost:8900/api/getcategory");
       setCategory(res.data.category);
     } catch (error) {
       console.log("Error in getcategory:", error);
@@ -146,7 +146,7 @@ export default function TCreations() {
   const getCreations = async () => {
     try {
       const res = await axios.get(
-        "https://api.vijayhomeservice.com/api/creation/getallwebcreation"
+        "http://localhost:8900/api/creation/getallwebcreation"
       );
       setCreationData(res.data.creation);
     } catch (error) {
@@ -157,7 +157,7 @@ export default function TCreations() {
   const handleDelete = async (row) => {
     try {
       const res = await axios.post(
-        `https://api.vijayhomeservice.com/api/creation/deletewebcreation/${row._id}`
+        `http://localhost:8900/api/creation/deletewebcreation/${row._id}`
       );
       if (res.status === 200) {
         alert("Deleted Succesfully");
@@ -182,7 +182,10 @@ export default function TCreations() {
             {" "}
             Thoughts Creations Management{" "}
           </span>
-          <MdOutlineLibraryAdd onClick={handleAddCategory} className="m-auto cursor" />
+          <MdOutlineLibraryAdd
+            onClick={handleAddCategory}
+            className="m-auto cursor"
+          />
         </div>
       </div>
       <DataTable columns={columns} data={CreationData} pagination={true} />
@@ -194,7 +197,9 @@ export default function TCreations() {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>{Edit ? "Edit thoughtfull creation" : "Add thoughtfull creation"} </Modal.Title>
+          <Modal.Title>
+            {Edit ? "Edit thoughtfull creation" : "Add thoughtfull creation"}{" "}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
@@ -224,15 +229,27 @@ export default function TCreations() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="col-md-2 me-auto"  variant="secondary" onClick={() => setOpen(false)}>
+          <Button
+            className="col-md-2 me-auto"
+            variant="secondary"
+            onClick={() => setOpen(false)}
+          >
             Close
           </Button>
           {Edit ? (
-            <Button className="col-md-2 "  variant="primary" onClick={handleSaveOrUpdate}>
+            <Button
+              className="col-md-2 "
+              variant="primary"
+              onClick={handleSaveOrUpdate}
+            >
               Update
             </Button>
           ) : (
-            <Button className="col-md-2 "  variant="primary" onClick={handleAddCreations}>
+            <Button
+              className="col-md-2 "
+              variant="primary"
+              onClick={handleAddCreations}
+            >
               Save
             </Button>
           )}

@@ -91,4 +91,9 @@ router.put(
   ServiceManagemntController.updateServiceimgLink
 );
 
+router.get(
+  "/getserviced",
+  ServiceManagemntController.getserviceName
+);
+
 module.exports = router;

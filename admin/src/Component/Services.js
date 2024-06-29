@@ -12,12 +12,18 @@ export default function Category() {
   const [CateLink, setCateLink] = useState("");
   const [SelectCate, setSelectCate] = useState("");
   const [Edit, setEdit] = useState(null);
+  const [filterData, setfilterData] = useState([]);
+  const [SearchValue, setSearchValue] = useState("");
 
   const columns = [
     {
       name: "Category",
       selector: (row) => row.category,
     },
+    {
+      name: "Subcategory",
+      selector: (row) => row.Subcategory,
+    },    
     {
       name: "Services name",
       selector: (row) => row.serviceName,
@@ -48,7 +54,7 @@ export default function Category() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/userapp/updateservicelink/${
+      const url = `http://localhost:8900/api/userapp/updateservicelink/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -63,7 +69,7 @@ export default function Category() {
         alert("Updated successfully");
         setOpen(false);
         getServices();
-        window.location.reload("")
+        window.location.reload("");
       }
     } catch (error) {
       console.log("Error in handleSaveOrUpdate:", error);
@@ -81,12 +87,13 @@ export default function Category() {
   const getServices = async () => {
     try {
       const res = await axios.get(
-        "https://api.vijayhomeservice.com/api/userapp/getservices"
+        "http://localhost:8900/api/userapp/getserviced"
       );
       // console.log(res.data, "res.data");
-      setServices(res.data.service);
+      setServices(res.data.services
+      );
       // console.log(res.data);
-      // console.log(res);
+      console.log(res);
     } catch (error) {
       console.log("Error in getServices:", error);
     }
@@ -97,16 +104,33 @@ export default function Category() {
     setOpen(true);
   };
   // console.log(Services);
-
+  useEffect(() => {
+    let value = SearchValue.toLowerCase();
+    let data = Services.filter((ele) =>
+      ele?.sub_subcategory?.toLowerCase()?.includes(value)
+    );
+    setfilterData(data);
+  }, [Services, SearchValue]);
   return (
     <div className="row m-auto p-2">
       <div className="row text-center">
-        <div className="col-md-3 d-flex m-auto">
+        {/* <div className="col-md-3 d-flex m-auto">
           <span className="m-auto text-bold">Services Management </span>
           <MdOutlineLibraryAdd onClick={handleAddCategory} className="m-auto cursor" />
+        </div> */}
+        <div className="col-md-2">
+          <Form.Control
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search  Services"
+          />
         </div>
       </div>
-      <DataTable columns={columns} data={Services} pagination={true} />
+      <DataTable
+        className="mt-2"
+        columns={columns}
+        data={Services}
+        pagination={true}
+      />
 
       <Modal
         show={open}
@@ -147,10 +171,18 @@ export default function Category() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="col-md-2 me-auto"  variant="secondary" onClick={() => setOpen(false)}>
+          <Button
+            className="col-md-2 me-auto"
+            variant="secondary"
+            onClick={() => setOpen(false)}
+          >
             Close
           </Button>
-          <Button className="col-md-2 "  variant="primary" onClick={handleSaveOrUpdate}>
+          <Button
+            className="col-md-2 "
+            variant="primary"
+            onClick={handleSaveOrUpdate}
+          >
             {Edit ? "Update" : "Save"}
           </Button>
         </Modal.Footer>

@@ -12,9 +12,9 @@ export default function SubSubCategory() {
   const [CateLink, setCateLink] = useState("");
   const [SelectCate, setSelectCate] = useState("");
   const [Edit, setEdit] = useState(null);
-
+  const [filterData, setfilterData] = useState([]);
+  const [SearchValue, setSearchValue] = useState("");
   const columns = [
-   
     {
       name: "subcategory",
       selector: (row) => row.subcategory,
@@ -46,10 +46,10 @@ export default function SubSubCategory() {
     setCateLink("");
     setOpen(true);
   };
-
+  // https://api.vijayhomeservice.com
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/userapp/updateresublink/${
+      const url = `http://localhost:8900/api/userapp/updateresublink/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -82,7 +82,7 @@ export default function SubSubCategory() {
   const getSubcategory = async () => {
     try {
       const res = await axios.get(
-        "https://api.vijayhomeservice.com/api/userapp/getappresubcat"
+        "http://localhost:8900/api/userapp/getappresubcat"
       );
       setSubCategory(res.data.subcategory);
     } catch (error) {
@@ -95,19 +95,38 @@ export default function SubSubCategory() {
     setOpen(true);
   };
   // console.log(SubCategory);
+  useEffect(() => {
+    let value = SearchValue.toLowerCase();
+    let data = SubCategory.filter((ele) =>
+      ele?.sub_subcategory?.toLowerCase()?.includes(value)
+    );
+    setfilterData(data);
+  }, [SubCategory, SearchValue]);
 
+  
   return (
     <div className="row m-auto p-2">
       <div className="row text-center">
-        <div className="col-md-3 d-flex m-auto">
+        {/* <div className="col-md-3 d-flex m-auto">
           <span className="m-auto text-bold">Subcategory Management </span>
           <MdOutlineLibraryAdd
             onClick={handleAddCategory}
             className="m-auto cursor"
           />
+        </div> */}
+        <div className="col-md-2">
+          <Form.Control
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search  sub_subcategory"
+          />
         </div>
       </div>
-      <DataTable columns={columns} data={SubCategory} pagination={true} />
+      <DataTable
+        className="mt-3"
+        columns={columns}
+        data={filterData}
+        pagination={true}
+      />
 
       <Modal
         show={open}
@@ -150,10 +169,18 @@ export default function SubSubCategory() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="col-md-2 me-auto"  variant="secondary" onClick={() => setOpen(false)}>
+          <Button
+            className="col-md-2 me-auto"
+            variant="secondary"
+            onClick={() => setOpen(false)}
+          >
             Close
           </Button>
-          <Button className="col-md-2 "  variant="primary" onClick={handleSaveOrUpdate}>
+          <Button
+            className="col-md-2 "
+            variant="primary"
+            onClick={handleSaveOrUpdate}
+          >
             {Edit ? "Update" : "Save"}
           </Button>
         </Modal.Footer>

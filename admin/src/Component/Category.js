@@ -12,6 +12,8 @@ export default function Category() {
   const [CateLink, setCateLink] = useState("");
   const [SelectCate, setSelectCate] = useState("");
   const [Edit, setEdit] = useState(null);
+  const [filterData, setfilterData] = useState([]);
+  const [SearchValue, setSearchValue] = useState("");
 
   const columns = [
     {
@@ -43,11 +45,9 @@ export default function Category() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/updateimglink/${
-        Edit ? Edit._id : SelectCate
-      }`;
+      // const url = `http://localhost:8900/api/updateimglink/${Edit._id}`;
       const config = {
-        url,
+        url: `http://localhost:8900/api/updateimglink/${Edit._id}`,
         method: "put",
         data: {
           imglink: CateLink,
@@ -75,7 +75,7 @@ export default function Category() {
 
   const getcategory = async () => {
     try {
-      const res = await axios.get("https://api.vijayhomeservice.com/api/getcategory");
+      const res = await axios.get("http://localhost:8900/api/getcategory");
       setCategory(res.data.category);
     } catch (error) {
       console.log("Error in getcategory:", error);
@@ -86,17 +86,33 @@ export default function Category() {
     setEdit(row);
     setOpen(true);
   };
-
+  useEffect(() => {
+    let value = SearchValue.toLowerCase();
+    let data = Category.filter((ele) =>
+      ele?.category?.toLowerCase()?.includes(value)
+    );
+    setfilterData(data);
+  }, [Category,SearchValue]);
   return (
-    <div className="row m-auto p-2">
+    <div className="row m-auto p-2 mt-3">
       <div className="row text-center">
-        <div className="col-md-2 d-flex m-auto">
+        {/* <div className="col-md-2 d-flex m-auto">
           <span className="m-auto text-bold">Category Management </span>
           <MdOutlineLibraryAdd onClick={handleAddCategory} className="m-auto cursor" />
+        </div> */}
+        <div className="col-md-2">
+          <Form.Control
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search here"
+          />
         </div>
       </div>
-      <DataTable columns={columns} data={Category} pagination={true} />
-
+      <DataTable
+        className="mt-1"
+        columns={columns}
+        data={filterData}
+        pagination={true}
+      />
       <Modal
         show={open}
         onHide={() => setOpen(false)}
@@ -130,17 +146,25 @@ export default function Category() {
             <Form.Control
               onChange={(e) => setCateLink(e.target.value)}
               type="text"
-              value={CateLink}
+              defaultValue={CateLink}
               autoFocus
             />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="col-md-2 me-auto"  variant="secondary" onClick={() => setOpen(false)}>
+          <Button
+            className="col-md-2 me-auto"
+            variant="secondary"
+            onClick={() => setOpen(false)}
+          >
             Close
           </Button>
-          <Button className="col-md-2 "  variant="primary" onClick={handleSaveOrUpdate}>
-            {Edit ? "Update" : "Save"}
+          <Button
+            className="col-md-2 "
+            variant="primary"
+            onClick={handleSaveOrUpdate}
+          >
+            Update
           </Button>
         </Modal.Footer>
       </Modal>
