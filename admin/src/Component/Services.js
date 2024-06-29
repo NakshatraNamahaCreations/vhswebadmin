@@ -54,7 +54,7 @@ export default function Category() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `http://localhost:8900/api/userapp/updateservicelink/${
+      const url = `https://api.vijayhomeservice.com/api/userapp/updateservicelink/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -87,7 +87,7 @@ export default function Category() {
   const getServices = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8900/api/userapp/getserviced"
+        "https://api.vijayhomeservice.com/api/userapp/getserviced"
       );
       // console.log(res.data, "res.data");
       setServices(res.data.services

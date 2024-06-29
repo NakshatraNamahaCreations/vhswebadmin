@@ -45,9 +45,9 @@ export default function Category() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      // const url = `http://localhost:8900/api/updateimglink/${Edit._id}`;
+      // const url = `https://api.vijayhomeservice.com/api/updateimglink/${Edit._id}`;
       const config = {
-        url: `http://localhost:8900/api/updateimglink/${Edit._id}`,
+        url: `https://api.vijayhomeservice.com/api/updateimglink/${Edit._id}`,
         method: "put",
         data: {
           imglink: CateLink,
@@ -75,7 +75,7 @@ export default function Category() {
 
   const getcategory = async () => {
     try {
-      const res = await axios.get("http://localhost:8900/api/getcategory");
+      const res = await axios.get("https://api.vijayhomeservice.com/api/getcategory");
       setCategory(res.data.category);
     } catch (error) {
       console.log("Error in getcategory:", error);

@@ -49,7 +49,7 @@ export default function Category() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `http://localhost:8900/api/userapp/updatesublink/${
+      const url = `https://api.vijayhomeservice.com/api/userapp/updatesublink/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -82,7 +82,7 @@ export default function Category() {
   const getSubcategory = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8900/api/userapp/getappsubcat"
+        "https://api.vijayhomeservice.com/api/userapp/getappsubcat"
       );
       setSubCategory(res.data.subcategory);
       // console.log(res.data);

@@ -79,7 +79,7 @@ export default function TCreations() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `http://localhost:8900/api/creation/updatecreation/${
+      const url = `https://api.vijayhomeservice.com/api/creation/updatecreation/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -105,7 +105,7 @@ export default function TCreations() {
   const handleAddCreations = async () => {
     try {
       const config = {
-        url: "http://localhost:8900/api/creation/addwebcreation",
+        url: "https://api.vijayhomeservice.com/api/creation/addwebcreation",
         headers: { "Content-Type": "application/json" },
         method: "post",
         data: {
@@ -136,7 +136,7 @@ export default function TCreations() {
 
   const getcategory = async () => {
     try {
-      const res = await axios.get("http://localhost:8900/api/getcategory");
+      const res = await axios.get("https://api.vijayhomeservice.com/api/getcategory");
       setCategory(res.data.category);
     } catch (error) {
       console.log("Error in getcategory:", error);
@@ -146,7 +146,7 @@ export default function TCreations() {
   const getCreations = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8900/api/creation/getallwebcreation"
+        "https://api.vijayhomeservice.com/api/creation/getallwebcreation"
       );
       setCreationData(res.data.creation);
     } catch (error) {
@@ -157,7 +157,7 @@ export default function TCreations() {
   const handleDelete = async (row) => {
     try {
       const res = await axios.post(
-        `http://localhost:8900/api/creation/deletewebcreation/${row._id}`
+        `https://api.vijayhomeservice.com/api/creation/deletewebcreation/${row._id}`
       );
       if (res.status === 200) {
         alert("Deleted Succesfully");

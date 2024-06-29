@@ -13,7 +13,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8900/api/webadmin/webadminsignup",
+        "https://api.vijayhomeservice.com/api/webadmin/webadminsignup",
         {
           email: email,
           createpassword: createPassword,

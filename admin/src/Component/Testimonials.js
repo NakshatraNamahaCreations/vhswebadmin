@@ -92,7 +92,7 @@ export default function Testimonials() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `http://localhost:8900/api/testimonial/updatedtestimonial/${
+      const url = `https://api.vijayhomeservice.com/api/testimonial/updatedtestimonial/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -120,7 +120,7 @@ export default function Testimonials() {
   const handleAddTestimonial = async () => {
     try {
       const config = {
-        url: "http://localhost:8900/api/testimonial/addtestimonial",
+        url: "https://api.vijayhomeservice.com/api/testimonial/addtestimonial",
         headers: { "Content-Type": "application/json" },
         method: "post",
         data: {
@@ -157,7 +157,7 @@ export default function Testimonials() {
   const getWhyChooose = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8900/api/testimonial/getalltestimonial"
+        "https://api.vijayhomeservice.com/api/testimonial/getalltestimonial"
       );
       setTestimonial(res.data.data);
     } catch (error) {
@@ -168,7 +168,7 @@ export default function Testimonials() {
   const handleDelete = async (row) => {
     try {
       const res = await axios.post(
-        `http://localhost:8900/api/testimonial/deletetestimonial/${row._id}`
+        `https://api.vijayhomeservice.com/api/testimonial/deletetestimonial/${row._id}`
       );
       if (res.status === 200) {
         alert("Deleted Succesfully");

@@ -54,7 +54,7 @@ export default function Offer() {
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `http://localhost:8900/api/offer/updatedoffer/${
+      const url = `https://api.vijayhomeservice.com/api/offer/updatedoffer/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
@@ -80,7 +80,7 @@ export default function Offer() {
   const handleAddCreations = async () => {
     try {
       const config = {
-        url: "http://localhost:8900/api/offer/addwebdoffer",
+        url: "https://api.vijayhomeservice.com/api/offer/addwebdoffer",
         headers: { "Content-Type": "application/json" },
         method: "post",
         data: {
@@ -111,7 +111,7 @@ export default function Offer() {
 
   const getcategory = async () => {
     try {
-      const res = await axios.get("http://localhost:8900/api/getcategory");
+      const res = await axios.get("https://api.vijayhomeservice.com/api/getcategory");
       setCategory(res.data.category);
     } catch (error) {
       console.log("Error in getcategory:", error);
@@ -121,7 +121,7 @@ export default function Offer() {
   const getCreations = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8900/api/offer/getallwebdoffer"
+        "https://api.vijayhomeservice.com/api/offer/getallwebdoffer"
       );
       setCreationData(res.data.offer);
     } catch (error) {
@@ -132,7 +132,7 @@ export default function Offer() {
   const handleDelete = async (row) => {
     try {
       const res = await axios.post(
-        `http://localhost:8900/api/offer/deletewebdoffer/${row._id}`
+        `https://api.vijayhomeservice.com/api/offer/deletewebdoffer/${row._id}`
       );
       if (res.status === 200) {
         alert("Deleted Succesfully");
