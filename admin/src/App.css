@@ -17,6 +17,8 @@
   font-weight: 400;
   text-decoration: none;
   color: black;
+  max-width: fit-content;
+  min-width: 100px;
 }
 .active {
   background-color: rgba(0, 0, 0, 0.859);

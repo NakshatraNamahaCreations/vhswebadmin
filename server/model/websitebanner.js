@@ -10,7 +10,8 @@ const webannerSchema = new mongoose.Schema({
   webbanner: {
     type: String,
   },
-});
+},
+{ timestamps: true });
 
 const webBannermodel = mongoose.model("websitebanner", webannerSchema);
 module.exports = webBannermodel;

@@ -23,7 +23,7 @@ export default function Category() {
     {
       name: "Subcategory",
       selector: (row) => row.Subcategory,
-    },    
+    },
     {
       name: "Services name",
       selector: (row) => row.serviceName,
@@ -90,8 +90,7 @@ export default function Category() {
         "https://api.vijayhomeservice.com/api/userapp/getserviced"
       );
       // console.log(res.data, "res.data");
-      setServices(res.data.services
-      );
+      setServices(res.data.services);
       // console.log(res.data);
       console.log(res);
     } catch (error) {
@@ -107,7 +106,7 @@ export default function Category() {
   useEffect(() => {
     let value = SearchValue.toLowerCase();
     let data = Services.filter((ele) =>
-      ele?.sub_subcategory?.toLowerCase()?.includes(value)
+      ele?.serviceName?.toLowerCase()?.includes(value)
     );
     setfilterData(data);
   }, [Services, SearchValue]);
@@ -128,7 +127,7 @@ export default function Category() {
       <DataTable
         className="mt-2"
         columns={columns}
-        data={Services}
+        data={filterData}
         pagination={true}
       />
 

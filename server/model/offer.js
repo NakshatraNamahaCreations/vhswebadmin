@@ -7,7 +7,8 @@ const webannerSchema = new mongoose.Schema({
   offer: {
     type: String,
   },
-});
+},
+{ timestamps: true });
 
 const webBannermodel = mongoose.model("weboffer", webannerSchema);
 module.exports = webBannermodel;

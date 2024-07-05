@@ -14,7 +14,8 @@ const webannerSchema = new mongoose.Schema({
     type:String
   }
  
-});
+},
+{ timestamps: true });
 
 const webBannermodel = mongoose.model("testimonial", webannerSchema);
 module.exports = webBannermodel;

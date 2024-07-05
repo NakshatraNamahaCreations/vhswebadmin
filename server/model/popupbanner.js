@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 
 const webannerSchema = new mongoose.Schema(
   {
-    category: {
+    image: {
       type: String,
     },
-    creationslink: {
+    category: {
       type: String,
     },
   },
   { timestamps: true }
 );
 
-const webBannermodel = mongoose.model("creation", webannerSchema);
+const webBannermodel = mongoose.model("popupbaner", webannerSchema);
 module.exports = webBannermodel;

@@ -2,15 +2,22 @@ const mongoose = require("mongoose");
 
 const webannerSchema = new mongoose.Schema(
   {
+    image: {
+      type: String,
+    },
+    title: {
+      type: String,
+    },
+
     category: {
       type: String,
     },
-    creationslink: {
+    discription: {
       type: String,
     },
   },
   { timestamps: true }
 );
 
-const webBannermodel = mongoose.model("creation", webannerSchema);
+const webBannermodel = mongoose.model("vhspromise", webannerSchema);
 module.exports = webBannermodel;

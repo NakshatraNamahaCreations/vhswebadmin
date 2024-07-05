@@ -14,6 +14,10 @@ import Testimonials from "./Component/Testimonials";
 import SubSubCategory from "./Component/sub_SubCategory";
 import Login from "./Component/Login";
 import Signup from "./Component/Signup";
+import HowITWorks from "./Component/Howitwroks";
+import Certificates from "./Component/Certificate";
+import PopUpBanner from "./Component/PopupBanner";
+import VHSPromises from "./Component/Promises";
 
 function App() {
   return (
@@ -84,10 +88,42 @@ function App() {
           }
         />
         <Route
+          path="/how-it-works"
+          element={
+            <Layout>
+              <HowITWorks />
+            </Layout>
+          }
+        />
+        <Route
+          path="/certificate"
+          element={
+            <Layout>
+              <Certificates />
+            </Layout>
+          }
+        />
+        <Route
           path="/testimonails"
           element={
             <Layout>
               <Testimonials />
+            </Layout>
+          }
+        />
+        <Route
+          path="/pop-up-banner"
+          element={
+            <Layout>
+              <PopUpBanner />
+            </Layout>
+          }
+        />
+        <Route
+          path="/vhs-promises"
+          element={
+            <Layout>
+              <VHSPromises />
             </Layout>
           }
         />

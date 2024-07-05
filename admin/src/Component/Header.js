@@ -18,110 +18,151 @@ export default function Header() {
           <span className="col-md-2 text-white"> {user.email}</span>
         )}
       </div>
-      <Navbar bg="light" className="p-2" data-bs-theme="light">
-        <Nav className="me-auto p-2">
-          <Link
-            className={`${
-              location.pathname === "/user"
-                ? "active navlink-btn p-1 me-2"
-                : "navlink-btn p-1 me-2"
-            }`}
-            to="/user"
-          >
-            Users
-          </Link>
-          <Link
-            className={`${
-              location.pathname === "/banner"
-                ? "active navlink-btn p-1 me-2"
-                : "navlink-btn p-1 me-2"
-            }`}
-            to="/banner"
-          >
-            Website Top Banner
-          </Link>
-          <Link
-            className={`${
-              location.pathname === "/creations"
-                ? "active navlink-btn p-1 me-2"
-                : "navlink-btn p-1 me-2"
-            }`}
-            to="/creations"
-          >
-            Thoughtfull Creations
-          </Link>
-          <Link
-            className={`${
-              location.pathname === "/category"
-                ? "active navlink-btn p-1 me-2"
-                : "navlink-btn p-1 me-2"
-            }`}
-            to="/category"
-          >
-            Category
-          </Link>
-          <Link
-            className={`${
-              location.pathname === "/subcategory"
-                ? "active navlink-btn p-1 me-2"
-                : "navlink-btn p-1 me-2"
-            }`}
-            to="/subcategory"
-          >
-            Subcategory
-          </Link>
-          <Link
-            className={`${
-              location.pathname === "/subsubcategory"
-                ? "active navlink-btn p-1 me-2"
-                : "navlink-btn p-1 me-2"
-            }`}
-            to="/subsubcategory"
-          >
-            Subsubcategory
-          </Link>
-          <Link
-            className={`${
-              location.pathname === "/services"
-                ? "active navlink-btn p-1 me-2"
-                : "navlink-btn p-1 me-2"
-            }`}
-            to="/services"
-          >
-            Services
-          </Link>
-          <Link
-            className={`${
-              location.pathname === "/offer"
-                ? "active navlink-btn p-1 me-2"
-                : "navlink-btn p-1 me-2"
-            }`}
-            to="/offer"
-          >
-            Offer
-          </Link>
-          <Link
-            className={`${
-              location.pathname === "/whychoose"
-                ? "active navlink-btn p-1 me-2"
-                : "navlink-btn p-1 me-2"
-            }`}
-            to="/whychoose"
-          >
-            Why Choose us
-          </Link>
-          <Link
-            className={`${
-              location.pathname === "/testimonails"
-                ? "active navlink-btn p-1 me-2"
-                : "navlink-btn p-1 me-2"
-            }`}
-            to="/testimonails"
-          >
-            Testimonials
-          </Link>
-        </Nav>
-      </Navbar>
+
+      <div bg="light" className="row mt-3 p-2 m-auto">
+        <Link
+          className={`${
+            location.pathname === "/user"
+              ? "col-md-1 active navlink-btn  p-1 me-2"
+              : "col-md-1 navlink-btn  p-1 me-2"
+          }`}
+          to="/user"
+        >
+          Users
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/banner"
+              ? "col-md-2 active navlink-btn  p-1 me-2"
+              : "col-md-2 navlink-btn  p-1 me-2"
+          }`}
+          to="/banner"
+        >
+          Website Top Banner
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/creations"
+              ? "col-md-2 active navlink-btn  p-1 me-2"
+              : "col-md-2 navlink-btn  p-1 me-2"
+          }`}
+          to="/creations"
+        >
+          Thoughtfull Creations
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/category"
+              ? "col-md-1 active navlink-btn  p-1 me-2"
+              : "col-md-1 navlink-btn  p-1 me-2"
+          }`}
+          to="/category"
+        >
+          Category
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/subcategory"
+              ? "col-md-1 active navlink-btn  p-1 me-2"
+              : "col-md-1 navlink-btn  p-1 me-2"
+          }`}
+          to="/subcategory"
+        >
+          Subcategory
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/subsubcategory"
+              ? "col-md-2 active navlink-btn  p-1 me-2"
+              : "col-md-2 navlink-btn  p-1 me-2"
+          }`}
+          to="/subsubcategory"
+        >
+          Subsubcategory
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/services"
+              ? "col-md-1 active navlink-btn  p-1 me-2"
+              : "col-md-1 navlink-btn  p-1 me-2"
+          }`}
+          to="/services"
+        >
+          Services
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/offer"
+              ? "col-md-1 active navlink-btn  p-1 me-2"
+              : "col-md-1 navlink-btn  p-1 me-2"
+          }`}
+          to="/offer"
+        >
+          Offer
+        </Link>
+
+        <Link
+          className={`${
+            location.pathname === "/how-it-works"
+              ? "col-md-2 active navlink-btn mt-4 p-1 me-2"
+              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+          }`}
+          to="/how-it-works"
+        >
+          How It Works
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/whychoose"
+              ? "col-md-2 active navlink-btn mt-4 p-1 me-2"
+              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+          }`}
+          to="/whychoose"
+        >
+          Why Choose us
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/testimonails"
+              ? "col-md-1 active navlink-btn mt-4 p-1 me-2"
+              : " col-md-1 navlink-btn mt-4 p-1 me-2"
+          }`}
+          to="/testimonails"
+        >
+          Testimonials
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/certificate"
+              ? "col-md-1 active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-1 navlink-btn mt-4 p-1 me-2"
+          }`}
+          to="/certificate"
+        >
+          Certificates
+        </Link>
+
+        <Link
+          className={`${
+            location.pathname === "/pop-up-banner"
+              ? "col-md-2 active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+          }`}
+          to="/pop-up-banner"
+        >
+          Pop-Up Banner
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/vhs-promises"
+              ? "col-md-2 active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+          }`}
+          to="/vhs-promises"
+        >
+          VHS Promises
+        </Link>
+      </div>
     </>
   );
 }

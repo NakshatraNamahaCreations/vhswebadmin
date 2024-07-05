@@ -54,7 +54,17 @@ class adminlogin {
         });
       }
     } catch (err) {
-    //   console.log(err);
+      //   console.log(err);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+  async getdata(req, res) {
+    try {
+      const data = await adminloginmodel.findOne();
+      return res.json({ data: data });
+    } catch (err) {
+      //   console.log(err);
       return res.status(500).json({ error: "Internal Server Error" });
     }
   }

@@ -12,7 +12,8 @@ const webannerSchema = new mongoose.Schema({
   },
 
  
-});
+},
+{ timestamps: true });
 
 
 const webBannermodel = mongoose.model("whychoose", webannerSchema);
