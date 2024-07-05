@@ -18,6 +18,9 @@ import HowITWorks from "./Component/Howitwroks";
 import Certificates from "./Component/Certificate";
 import PopUpBanner from "./Component/PopupBanner";
 import VHSPromises from "./Component/Promises";
+import VHSComparison from "./Component/Comparison";
+import Review from "./Component/Review";
+import FAQ from "./Component/FAQ";
 
 function App() {
   return (
@@ -124,6 +127,30 @@ function App() {
           element={
             <Layout>
               <VHSPromises />
+            </Layout>
+          }
+        />
+        <Route
+          path="/comparison"
+          element={
+            <Layout>
+              <VHSComparison />
+            </Layout>
+          }
+        />
+        <Route
+          path="/review"
+          element={
+            <Layout>
+              <Review />
+            </Layout>
+          }
+        />
+        <Route
+          path="/faq"
+          element={
+            <Layout>
+              <FAQ />
             </Layout>
           }
         />

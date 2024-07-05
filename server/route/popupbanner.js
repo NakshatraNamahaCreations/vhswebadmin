@@ -8,3 +8,4 @@ router.post("/deletepopupbanner/:id", PopUpBannerController.postdeletePopUpBanne
 router.put("/updatepopupbanner/:ccid", PopUpBannerController.updatePopUpBanner);
 
 module.exports = router;
+

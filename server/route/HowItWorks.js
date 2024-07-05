@@ -8,3 +8,4 @@ router.post("/deletehowitworks/:id", HowItworksController.postdeleteHowItworks);
 router.put("/updatehowitworks/:ccid", HowItworksController.updateHowItworks);
 
 module.exports = router;
+

@@ -162,6 +162,38 @@ export default function Header() {
         >
           VHS Promises
         </Link>
+        <Link
+          className={`${
+            location.pathname === "/comparison"
+              ? "col-md-2 active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+          }`}
+          to="/comparison"
+        >
+          Comparison
+        </Link>
+
+        <Link
+          className={`${
+            location.pathname === "/review"
+              ? "col-md-2 active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+          }`}
+          to="/review"
+        >
+          Review
+        </Link>
+
+        <Link
+          className={`${
+            location.pathname === "/faq"
+              ? "col-md-2 active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+          }`}
+          to="/faq"
+        >
+          FAQ
+        </Link>
       </div>
     </>
   );
