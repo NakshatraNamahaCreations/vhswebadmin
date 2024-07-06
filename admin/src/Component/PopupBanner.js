@@ -9,7 +9,7 @@ import axios from "axios";
 export default function PopUpBanner() {
   const [open, setOpen] = useState(false);
   const [Category, setCategory] = useState([]);
-  const [CertificateImage, setCertificateImage] = useState("");
+  const [POPUPIMage, setPOPUPIMage] = useState("");
   const [PopupbannerData, setPopupbannerData] = useState([]);
   const [SelectCate, setSelectCate] = useState("");
   const [Edit, setEdit] = useState(null);
@@ -43,7 +43,7 @@ export default function PopUpBanner() {
   const handleAddCategory = () => {
     setEdit(null);
     setSelectCate();
-    setCertificateImage("");
+    setPOPUPIMage("");
     setOpen(true);
   };
 
@@ -57,7 +57,7 @@ export default function PopUpBanner() {
         method: "put",
         data: {
           category: SelectCate,
-          image: CertificateImage,
+          image: POPUPIMage,
         },
       };
       const res = await axios(config);
@@ -80,7 +80,7 @@ export default function PopUpBanner() {
         method: "post",
         data: {
           category: SelectCate,
-          image: CertificateImage,
+          image: POPUPIMage,
         },
       };
       const res = await axios(config);
@@ -99,7 +99,7 @@ export default function PopUpBanner() {
     getcategory();
     getCertificates();
     if (Edit) {
-      setCertificateImage(Edit.image);
+      setPOPUPIMage(Edit.image);
       setSelectCate(Edit.category);
     }
   }, [Edit]);
@@ -185,12 +185,12 @@ export default function PopUpBanner() {
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label> Certificate Image</Form.Label>
+            <Form.Label> Pop Up Image</Form.Label>
             <Form.Control
-              onChange={(e) => setCertificateImage(e.target.value)}
+              onChange={(e) => setPOPUPIMage(e.target.value)}
               type="text"
-              placeholder="Certificate image"
-              value={CertificateImage}
+              placeholder="Pop Up image"
+              value={POPUPIMage}
               autoFocus
             />
           </Form.Group>

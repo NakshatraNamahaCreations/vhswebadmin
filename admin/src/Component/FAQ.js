@@ -9,13 +9,12 @@ import axios from "axios";
 export default function FAQ() {
   const [open, setOpen] = useState(false);
   const [Category, setCategory] = useState([]);
-  const [FAQImage, setFAQImage] = useState("");
-  const [answer, setanswer] = useState("");
-  const [question, setquestion] = useState("");
+  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
   const [VHSPromisesData, setVHSPromisesData] = useState([]);
   const [SelectCate, setSelectCate] = useState("");
   const [Edit, setEdit] = useState(null);
-
+  // question, category, answer
   const columns = [
     {
       name: "Category",
@@ -25,14 +24,11 @@ export default function FAQ() {
       name: "Question",
       selector: (row) => row.question,
     },
+
     {
       name: "Answer",
       selector: (row) => row.answer,
     },
-    // {
-    //   name: "Website Image",
-    //   selector: (row) => <img width={100} height={100} src={row?.image} />,
-    // },
 
     {
       name: "Action",
@@ -53,7 +49,6 @@ export default function FAQ() {
   const handleAddCategory = () => {
     setEdit(null);
     setSelectCate();
-    setFAQImage("");
     setOpen(true);
   };
 
@@ -67,8 +62,8 @@ export default function FAQ() {
         method: "put",
         data: {
           category: SelectCate,
-          answer: answer,
-          question: question,
+          answer: description,
+          question: title,
         },
       };
       const res = await axios(config);
@@ -91,8 +86,8 @@ export default function FAQ() {
         method: "post",
         data: {
           category: SelectCate,
-          answer: answer,
-          question: question,
+          answer: description,
+          question: title,
         },
       };
       const res = await axios(config);
@@ -112,16 +107,14 @@ export default function FAQ() {
     getFAQ();
     if (Edit) {
       setSelectCate(Edit.category);
-      setanswer(Edit.answer);
-      setquestion(Edit.question);
+      setDescription(Edit.answer);
+      setTitle(Edit.question);
     }
   }, [Edit]);
 
   const getcategory = async () => {
     try {
-      const res = await axios.get(
-        "https://api.vijayhomeservice.com/api/getcategory"
-      );
+      const res = await axios.get("https://api.vijayhomeservice.com/api/getcategory");
       setCategory(res.data.category);
     } catch (error) {
       console.log("Error in getcategory:", error);
@@ -130,9 +123,7 @@ export default function FAQ() {
 
   const getFAQ = async () => {
     try {
-      const res = await axios.get(
-        "https://api.vijayhomeservice.com/api/faq/getallvhsfaq"
-      );
+      const res = await axios.get("https://api.vijayhomeservice.com/api/faq/getallvhsfaq");
       setVHSPromisesData(res.data.data);
     } catch (error) {
       console.log("Error in getcategory:", error);
@@ -175,11 +166,11 @@ export default function FAQ() {
       <Modal
         show={open}
         onHide={() => setOpen(false)}
-        aria-labelledby="contained-modal-question-vcenter"
+        aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header closeButton>
-          <Modal.question>{Edit ? "Edit FAQ" : "Add FAQ"} </Modal.question>
+          <Modal.Title>{Edit ? "Edit FAQ" : "Add FAQ"} </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
@@ -197,24 +188,34 @@ export default function FAQ() {
               ))}
             </Form.Select>
           </Form.Group>
-
+          {/* 
+          <Form.Group className="mb-3">
+            <Form.Label> FAQ Image</Form.Label>
+            <Form.Control
+              onChange={(e) => setFAQImage(e.target.value)}
+              type="text"
+              placeholder="FAQ image"
+              value={FAQImage}
+              autoFocus
+            />
+          </Form.Group> */}
           <Form.Group className="mb-3">
             <Form.Label>Question </Form.Label>
             <Form.Control
-              onChange={(e) => setquestion(e.target.value)}
+              onChange={(e) => setTitle(e.target.value)}
               type="text"
-              placeholder="question"
-              value={question}
+              placeholder="Question"
+              value={title}
               autoFocus
             />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Answer </Form.Label>
             <Form.Control
-              onChange={(e) => setanswer(e.target.value)}
+              onChange={(e) => setDescription(e.target.value)}
               as="textarea"
-              placeholder="answer"
-              value={answer}
+              placeholder="Answer"
+              value={description}
               autoFocus
             />
           </Form.Group>
