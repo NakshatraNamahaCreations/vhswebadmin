@@ -29,10 +29,10 @@ export default function FAQ() {
       name: "Answer",
       selector: (row) => row.answer,
     },
-    {
-      name: "Website Image",
-      selector: (row) => <img width={100} height={100} src={row?.image} />,
-    },
+    // {
+    //   name: "Website Image",
+    //   selector: (row) => <img width={100} height={100} src={row?.image} />,
+    // },
 
     {
       name: "Action",
