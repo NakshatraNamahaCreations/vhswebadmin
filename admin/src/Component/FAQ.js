@@ -67,7 +67,6 @@ export default function FAQ() {
         method: "put",
         data: {
           category: SelectCate,
-          image: FAQImage,
           answer: answer,
           question: question,
         },
@@ -112,7 +111,6 @@ export default function FAQ() {
     getcategory();
     getFAQ();
     if (Edit) {
-      setFAQImage(Edit.image);
       setSelectCate(Edit.category);
       setanswer(Edit.answer);
       setquestion(Edit.question);
