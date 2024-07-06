@@ -2,14 +2,13 @@ const FAQModal = require("../model/FAQ");
 
 class FAQ {
   async postaddFAQ(req, res) {
-    let { image, title, category, discription } = req.body;
+    let { question, category, answer } = req.body;
 
     try {
       let newFAQ = new FAQModal({
-        image,
-        title,
+        question,
         category,
-        discription,
+        answer,
       });
 
       let save = newFAQ.save();
@@ -25,7 +24,7 @@ class FAQ {
   async updateFAQ(req, res) {
     try {
       const FAQId = req.params.ccid;
-      const { image, title, category, discription } = req.body;
+      const { question, category, answer } = req.body;
 
       const findFAQ = await FAQModal.findOne({
         _id: FAQId,
@@ -34,11 +33,10 @@ class FAQ {
         return res.json({ error: "No such record found" });
       }
 
-      findFAQ.image = image || findFAQ.image;
       findFAQ.category = category || findFAQ.category;
 
-      findFAQ.discription = discription || findFAQ.discription;
-      findFAQ.title = title || findFAQ.title;
+      findFAQ.answer = answer || findFAQ.answer;
+      findFAQ.question = question || findFAQ.question;
       const updateCategory = await FAQModal.findOneAndUpdate(
         { _id: FAQId },
         findFAQ,

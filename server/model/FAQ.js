@@ -2,17 +2,15 @@ const mongoose = require("mongoose");
 
 const webannerSchema = new mongoose.Schema(
   {
-    image: {
-      type: String,
-    },
-    title: {
+   
+    question: {
       type: String,
     },
 
     category: {
       type: String,
     },
-    discription: {
+    answer: {
       type: String,
     },
   },
