@@ -13,9 +13,9 @@ export default function Header() {
           Home
         </a>
         {!user ? (
-          <FaRegUser className="col-md-1" style={{ color: "white" }} />
+          <FaRegUser className="col-md-1 text-center" style={{ color: "white" }} />
         ) : (
-          <span className="col-md-2 text-white"> {user.email}</span>
+          <span className="col-md-2 text-center text-white"> {user.email}</span>
         )}
       </div>
 
@@ -23,8 +23,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/user"
-              ? "col-md-1 active navlink-btn  p-1 me-2"
-              : "col-md-1 navlink-btn  p-1 me-2"
+              ? "col-md-1 text-center active navlink-btn  p-1 me-2"
+              : "col-md-1 text-center navlink-btn  p-1 me-2"
           }`}
           to="/user"
         >
@@ -33,8 +33,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/banner"
-              ? "col-md-2 active navlink-btn  p-1 me-2"
-              : "col-md-2 navlink-btn  p-1 me-2"
+              ? "col-md-2 text-center active navlink-btn  p-1 me-2"
+              : "col-md-2 text-center navlink-btn  p-1 me-2"
           }`}
           to="/banner"
         >
@@ -43,8 +43,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/creations"
-              ? "col-md-2 active navlink-btn  p-1 me-2"
-              : "col-md-2 navlink-btn  p-1 me-2"
+              ? "col-md-2 text-center active navlink-btn  p-1 me-2"
+              : "col-md-2 text-center navlink-btn  p-1 me-2"
           }`}
           to="/creations"
         >
@@ -53,8 +53,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/category"
-              ? "col-md-1 active navlink-btn  p-1 me-2"
-              : "col-md-1 navlink-btn  p-1 me-2"
+              ? "col-md-1 text-center active navlink-btn  p-1 me-2"
+              : "col-md-1 text-center navlink-btn  p-1 me-2"
           }`}
           to="/category"
         >
@@ -63,8 +63,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/subcategory"
-              ? "col-md-1 active navlink-btn  p-1 me-2"
-              : "col-md-1 navlink-btn  p-1 me-2"
+              ? "col-md-1 text-center active navlink-btn  p-1 me-2"
+              : "col-md-1 text-center navlink-btn  p-1 me-2"
           }`}
           to="/subcategory"
         >
@@ -73,8 +73,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/subsubcategory"
-              ? "col-md-2 active navlink-btn  p-1 me-2"
-              : "col-md-2 navlink-btn  p-1 me-2"
+              ? "col-md-2 text-center active navlink-btn  p-1 me-2"
+              : "col-md-2 text-center navlink-btn  p-1 me-2"
           }`}
           to="/subsubcategory"
         >
@@ -83,8 +83,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/services"
-              ? "col-md-1 active navlink-btn  p-1 me-2"
-              : "col-md-1 navlink-btn  p-1 me-2"
+              ? "col-md-1 text-center active navlink-btn  p-1 me-2"
+              : "col-md-1 text-center navlink-btn  p-1 me-2"
           }`}
           to="/services"
         >
@@ -93,8 +93,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/offer"
-              ? "col-md-1 active navlink-btn  p-1 me-2"
-              : "col-md-1 navlink-btn  p-1 me-2"
+              ? "col-md-1 text-center active navlink-btn  p-1 me-2"
+              : "col-md-1 text-center navlink-btn  p-1 me-2"
           }`}
           to="/offer"
         >
@@ -104,8 +104,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/how-it-works"
-              ? "col-md-2 active navlink-btn mt-4 p-1 me-2"
-              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+              ? "col-md-2 text-center active navlink-btn mt-4 p-1 me-2"
+              : "col-md-2 text-center navlink-btn mt-4 p-1 me-2"
           }`}
           to="/how-it-works"
         >
@@ -114,8 +114,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/whychoose"
-              ? "col-md-2 active navlink-btn mt-4 p-1 me-2"
-              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+              ? "col-md-2 text-center active navlink-btn mt-4 p-1 me-2"
+              : "col-md-2 text-center navlink-btn mt-4 p-1 me-2"
           }`}
           to="/whychoose"
         >
@@ -124,8 +124,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/testimonails"
-              ? "col-md-1 active navlink-btn mt-4 p-1 me-2"
-              : " col-md-1 navlink-btn mt-4 p-1 me-2"
+              ? "col-md-1 text-center active navlink-btn mt-4 p-1 me-2"
+              : " col-md-1 text-center navlink-btn mt-4 p-1 me-2"
           }`}
           to="/testimonails"
         >
@@ -134,8 +134,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/certificate"
-              ? "col-md-1 active navlink-btn mt-4 p-1 me-2 mt-3"
-              : "col-md-1 navlink-btn mt-4 p-1 me-2"
+              ? "col-md-1 text-center active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-1 text-center navlink-btn mt-4 p-1 me-2"
           }`}
           to="/certificate"
         >
@@ -145,8 +145,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/pop-up-banner"
-              ? "col-md-2 active navlink-btn mt-4 p-1 me-2 mt-3"
-              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+              ? "col-md-2 text-center active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 text-center navlink-btn mt-4 p-1 me-2"
           }`}
           to="/pop-up-banner"
         >
@@ -155,8 +155,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/vhs-promises"
-              ? "col-md-2 active navlink-btn mt-4 p-1 me-2 mt-3"
-              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+              ? "col-md-2 text-center active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 text-center navlink-btn mt-4 p-1 me-2"
           }`}
           to="/vhs-promises"
         >
@@ -165,8 +165,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/comparison"
-              ? "col-md-2 active navlink-btn mt-4 p-1 me-2 mt-3"
-              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+              ? "col-md-2 text-center active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 text-center navlink-btn mt-4 p-1 me-2"
           }`}
           to="/comparison"
         >
@@ -176,8 +176,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/review"
-              ? "col-md-2 active navlink-btn mt-4 p-1 me-2 mt-3"
-              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+              ? "col-md-2 text-center active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 text-center navlink-btn mt-4 p-1 me-2"
           }`}
           to="/review"
         >
@@ -187,8 +187,8 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/faq"
-              ? "col-md-2 active navlink-btn mt-4 p-1 me-2 mt-3"
-              : "col-md-2 navlink-btn mt-4 p-1 me-2"
+              ? "col-md-2 text-center active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 text-center navlink-btn mt-4 p-1 me-2"
           }`}
           to="/faq"
         >

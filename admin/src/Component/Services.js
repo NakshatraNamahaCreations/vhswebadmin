@@ -14,7 +14,7 @@ export default function Category() {
   const [Edit, setEdit] = useState(null);
   const [filterData, setfilterData] = useState([]);
   const [SearchValue, setSearchValue] = useState("");
-
+  const [ViewBanner, setViewBanner] = useState("");
   const columns = [
     {
       name: "Category",
@@ -33,6 +33,12 @@ export default function Category() {
       name: "Website Image",
       selector: (row) => <img width={100} height={100} src={row?.imglink} />,
     },
+
+    {
+      name: "Service Details Banner",
+      selector: (row) => <img width={100} height={100} src={row?.viewbanner} />,
+    },
+
     {
       name: "Action",
       selector: (row) => (
@@ -62,6 +68,7 @@ export default function Category() {
         method: "put",
         data: {
           imglink: CateLink,
+          viewbanner: ViewBanner,
         },
       };
       const res = await axios(config);
@@ -81,6 +88,7 @@ export default function Category() {
     if (Edit) {
       setCateLink(Edit.imglink);
       setSelectCate(Edit._id);
+      setViewBanner(Edit.ViewBanner);
     }
   }, [Edit]);
 
@@ -89,9 +97,7 @@ export default function Category() {
       const res = await axios.get(
         "https://api.vijayhomeservice.com/api/userapp/getserviced"
       );
-      // console.log(res.data, "res.data");
       setServices(res.data.services);
-      // console.log(res.data);
       console.log(res);
     } catch (error) {
       console.log("Error in getServices:", error);
@@ -102,7 +108,7 @@ export default function Category() {
     setEdit(row);
     setOpen(true);
   };
-  // console.log(Services);
+
   useEffect(() => {
     let value = SearchValue.toLowerCase();
     let data = Services.filter((ele) =>
@@ -113,10 +119,6 @@ export default function Category() {
   return (
     <div className="row m-auto p-2">
       <div className="row text-center">
-        {/* <div className="col-md-3 d-flex m-auto">
-          <span className="m-auto text-bold">Services Management </span>
-          <MdOutlineLibraryAdd onClick={handleAddCategory} className="m-auto cursor" />
-        </div> */}
         <div className="col-md-2">
           <Form.Control
             onChange={(e) => setSearchValue(e.target.value)}
@@ -165,6 +167,15 @@ export default function Category() {
               onChange={(e) => setCateLink(e.target.value)}
               type="text"
               value={CateLink}
+              autoFocus
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Services view detail banner</Form.Label>
+            <Form.Control
+              onChange={(e) => setViewBanner(e.target.value)}
+              type="text"
+              value={ViewBanner}
               autoFocus
             />
           </Form.Group>

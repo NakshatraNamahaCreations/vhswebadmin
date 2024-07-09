@@ -48,3 +48,7 @@
 .BAfJj {
   border: 1px solid rgba(128, 128, 128, 0.452) !important;
 }
+.navbar-con {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}

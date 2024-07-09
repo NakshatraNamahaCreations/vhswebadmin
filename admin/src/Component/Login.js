@@ -18,6 +18,7 @@ const Login = () => {
 
       if (response.status === 200) {
         localStorage.setItem("userdata", JSON.stringify(response.data.user));
+        console.log(response.data, "response.data");
         setMessage(response.data.success);
         alert("Logged in Successfully");
         window.location.assign("/user");

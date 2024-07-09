@@ -105,6 +105,9 @@ const serviceManagementSchema = new mongoose.Schema({
   imglink: {
     type: String,
   },
+  viewbanner: {
+    type: String,
+  },
 });
 
 const serviceManagementModel = mongoose.model(

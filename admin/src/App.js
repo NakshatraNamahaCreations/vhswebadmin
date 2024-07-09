@@ -21,6 +21,7 @@ import VHSPromises from "./Component/Promises";
 import VHSComparison from "./Component/Comparison";
 import Review from "./Component/Review";
 import FAQ from "./Component/FAQ";
+import ViewDetailsBanner from "./Component/ViewBanner";
 
 function App() {
   return (
@@ -159,6 +160,14 @@ function App() {
           element={
             <Layout>
               <UserData />
+            </Layout>
+          }
+        />
+        <Route
+          path="/viewbanner"
+          element={
+            <Layout>
+              <ViewDetailsBanner />
             </Layout>
           }
         />

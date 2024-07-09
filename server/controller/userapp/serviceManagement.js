@@ -609,7 +609,7 @@ class serviceManagement {
   async updateServiceimgLink(req, res) {
     try {
       const categoryId = req.params.ccid;
-      const { imglink } = req.body;
+      const { imglink, viewbanner } = req.body;
 
       const findCategory = await serviceManagementModel.findOne({
         _id: categoryId,
@@ -617,7 +617,7 @@ class serviceManagement {
       if (!findCategory) {
         return res.json({ error: "No such record found" });
       }
-
+      findCategory.viewbanner = viewbanner || findCategory.viewbanner;
       findCategory.imglink = imglink || findCategory.imglink;
 
       const updateCategory = await serviceManagementModel.findOneAndUpdate(
@@ -654,7 +654,7 @@ class serviceManagement {
   async getserviceName(req, res) {
     try {
       let services = await serviceManagementModel
-        .find({}, "imglink category serviceName Subcategory")
+        .find({}, "imglink category serviceName Subcategory viewbanner")
         .sort({ _id: -1 });
       console.log(services, "services");
       if (services) {

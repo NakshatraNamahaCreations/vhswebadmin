@@ -40,12 +40,12 @@ const webadmin = require("./route/websiteAdminLogin");
 const userauth = require("./route/userapp/userauth");
 const Howitworks = require("./route/HowItWorks");
 const Certificate = require("./route/certificate");
-const PopupBanner = require("./route/popupbanner")
-const VHSPromises = require("./route/VhsPromises")
-const Comparison = require("./route/Comparion")
-
-const Review = require("./route/Review")
-const FAQ = require("./route/FAQ")
+const PopupBanner = require("./route/popupbanner");
+const VHSPromises = require("./route/VhsPromises");
+const Comparison = require("./route/Comparion");
+const ViewDetails = require("./route/ViewBanner");
+const Review = require("./route/Review");
+const FAQ = require("./route/FAQ");
 app.use("/api", category);
 app.use("/api", customer);
 //user app
@@ -62,6 +62,7 @@ app.use("/api/vhspromise", VHSPromises);
 app.use("/api/comparison", Comparison);
 app.use("/api/review", Review);
 app.use("/api/faq", FAQ);
+app.use("/api/vbanner", ViewDetails);
 // by hema
 
 app.use("/api/creation", thoughtfullcreation);
@@ -75,11 +76,3 @@ const PORT = process.env.PORT || 8900;
 app.listen(PORT, () => {
   console.log("Server is running on", PORT);
 });
-
-
-
-
-
-
-
-
