@@ -43,7 +43,7 @@ const Certificate = require("./route/certificate");
 const PopupBanner = require("./route/popupbanner");
 const VHSPromises = require("./route/VhsPromises");
 const Comparison = require("./route/Comparion");
-const ViewDetails = require("./route/ViewBanner");
+const ViewDetails = require("./route/offernumbanner");
 const Review = require("./route/Review");
 const FAQ = require("./route/FAQ");
 app.use("/api", category);

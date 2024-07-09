@@ -6,22 +6,20 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 
-export default function ViewDetailsBanner() {
+export default function OfferNumberBanner() {
   const [open, setOpen] = useState(false);
   const [Category, setCategory] = useState([]);
-  const [ViewBanner, setViewBanner] = useState("");
+  const [OfferNumBanner, setOfferNumBanner] = useState("");
   const [PopupbannerData, setPopupbannerData] = useState([]);
   const [SelectCate, setSelectCate] = useState("");
   const [Edit, setEdit] = useState(null);
-
+  console.log(PopupbannerData, "PopupbannerData");
   const columns = [
     {
-      name: "Category",
-      selector: (row) => row.category,
-    },
-    {
-      name: "Website Image",
-      selector: (row) => <img width={100} height={100} src={row?.banner} />,
+      name: "Offers number banner",
+      selector: (row) => (
+        <img width={100} height={100} src={row?.offerNumbanner} />
+      ),
     },
 
     {
@@ -43,21 +41,20 @@ export default function ViewDetailsBanner() {
   const handleAddCategory = () => {
     setEdit(null);
     setSelectCate();
-    setViewBanner("");
+    setOfferNumBanner("");
     setOpen(true);
   };
 
   const handleSaveOrUpdate = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/vbanner/updateviewbanner/${
+      const url = `https://api.vijayhomeservice.com/api/vbanner/updateoffernumbanner/${
         Edit ? Edit._id : SelectCate
       }`;
       const config = {
         url,
         method: "put",
         data: {
-          category: SelectCate,
-          banner: ViewBanner,
+          offerNumbanner: OfferNumBanner,
         },
       };
       const res = await axios(config);
@@ -72,15 +69,14 @@ export default function ViewDetailsBanner() {
     }
   };
 
-  const handleAddCreations = async () => {
+  const handleAddOffBanner = async () => {
     try {
       const config = {
-        url: "https://api.vijayhomeservice.com/api/vbanner/addviewbanner",
+        url: "https://api.vijayhomeservice.com/api/vbanner/addoffernumbanner",
         headers: { "Content-Type": "application/json" },
         method: "post",
         data: {
-          category: SelectCate,
-          banner: ViewBanner,
+          offerNumbanner: OfferNumBanner,
         },
       };
       const res = await axios(config);
@@ -88,7 +84,7 @@ export default function ViewDetailsBanner() {
         alert("added successfully");
         setOpen(false);
         getcategory();
-        getallViewBanner();
+        getallOfferNumBanner();
       }
     } catch (error) {
       console.log("Error in handleSaveOrUpdate:", error);
@@ -97,28 +93,28 @@ export default function ViewDetailsBanner() {
 
   useEffect(() => {
     getcategory();
-    getallViewBanner();
+    getallOfferNumBanner();
     if (Edit) {
-      setViewBanner(Edit.banner);
-      setSelectCate(Edit.category);
+      setOfferNumBanner(Edit.offerNumbanner);
     }
   }, [Edit]);
 
   const getcategory = async () => {
     try {
       const res = await axios.get("https://api.vijayhomeservice.com/api/getcategory");
-      setCategory(res.data.category);
+      // setCategory(res.data.category);
     } catch (error) {
       console.log("Error in getcategory:", error);
     }
   };
 
-  const getallViewBanner = async () => {
+  const getallOfferNumBanner = async () => {
     try {
       const res = await axios.get(
-        "https://api.vijayhomeservice.com/api/vbanner/getallviewbanner"
+        "https://api.vijayhomeservice.com/api/vbanner/getalloffernumbanner"
       );
-      setPopupbannerData(res.data.data);
+      console.log(res.data);
+      setPopupbannerData(res.data.banner);
     } catch (error) {
       console.log("Error in getcategory:", error);
     }
@@ -127,11 +123,11 @@ export default function ViewDetailsBanner() {
   const handleDelete = async (row) => {
     try {
       const res = await axios.post(
-        `https://api.vijayhomeservice.com/api/vbanner/deleteviewbanner/${row._id}`
+        `https://api.vijayhomeservice.com/api/vbanner/deleteoffernumbanner/${row._id}`
       );
       if (res.status === 200) {
         alert("Deleted Succesfully");
-        getallViewBanner();
+        getallOfferNumBanner();
         window.location.reload("");
       }
     } catch (error) {
@@ -150,7 +146,7 @@ export default function ViewDetailsBanner() {
         <div className="col-md-3 d-flex m-auto">
           <span className="m-auto text-bold">
             {" "}
-            View details banner management{" "}
+            Offer Number Banner management{" "}
           </span>
           <MdOutlineLibraryAdd
             onClick={handleAddCategory}
@@ -168,11 +164,11 @@ export default function ViewDetailsBanner() {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            {Edit ? "Edit View details banner " : "Add View details banner "}{" "}
+            {Edit ? "Edit Offer Number Banner " : "Add Offer Number Banner "}{" "}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Group className="mb-3">
+          {/* <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
 
             <Form.Select
@@ -186,14 +182,14 @@ export default function ViewDetailsBanner() {
                 </option>
               ))}
             </Form.Select>
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group className="mb-3">
-            <Form.Label> View Image</Form.Label>
+            <Form.Label> Offer Number Banner Link</Form.Label>
             <Form.Control
-              onChange={(e) => setViewBanner(e.target.value)}
+              onChange={(e) => setOfferNumBanner(e.target.value)}
               type="text"
               placeholder="View image"
-              value={ViewBanner}
+              value={OfferNumBanner}
               autoFocus
             />
           </Form.Group>
@@ -218,7 +214,7 @@ export default function ViewDetailsBanner() {
             <Button
               className="col-md-2 "
               variant="primary"
-              onClick={handleAddCreations}
+              onClick={handleAddOffBanner}
             >
               Save
             </Button>

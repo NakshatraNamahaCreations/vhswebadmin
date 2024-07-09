@@ -1,13 +1,12 @@
-const ViewBannermodel = require("../model/viewbanner");
+const OfferNumberModal = require("../model/offernumbanner");
 
-class ViewBanner {
-  async postAddNewViewBanner(req, res) {
-    let { category, ViewBanner } = req.body;
+class OfferNumberBanner {
+  async postAddNewoffernumbanner(req, res) {
+    let { offerNumbanner } = req.body;
 
     try {
-      let newbanner = new ViewBannermodel({
-        category,
-        ViewBanner,
+      let newbanner = new OfferNumberModal({
+        offerNumbanner,
       });
 
       let save = newbanner.save();
@@ -20,8 +19,8 @@ class ViewBanner {
     }
   }
 
-  async getallViewBanner(req, res) {
-    let banner = await ViewBannermodel.find({}).sort({ _id: -1 });
+  async getalloffernumbanner(req, res) {
+    let banner = await OfferNumberModal.find({}).sort({ _id: -1 });
 
     if (banner) {
       return res.json({ banner: banner });
@@ -30,28 +29,27 @@ class ViewBanner {
     }
   }
 
-  async postdeleteViewBanner(req, res) {
+  async postdeleteoffernumbanner(req, res) {
     let id = req.params.id;
-    const data = await ViewBannermodel.deleteOne({ _id: id });
+    const data = await OfferNumberModal.deleteOne({ _id: id });
 
-    return res.json({ success: "Successfully" });
+    return res.json({ data: data, success: "Successfully" });
   }
   async updatebanner(req, res) {
     try {
       const bannerId = req.params.ccid;
-      const { category, ViewBanner } = req.body;
+      const { offerNumbanner } = req.body;
 
-      const findBanner = await ViewBannermodel.findOne({
+      const findBanner = await OfferNumberModal.findOne({
         _id: bannerId,
       });
       if (!findBanner) {
         return res.json({ error: "No such record found" });
       }
 
-      findBanner.category = category || findBanner.category;
-      findBanner.ViewBanner = ViewBanner || findBanner.ViewBanner;
+      findBanner.offerNumbanner = offerNumbanner || findBanner.offerNumbanner;
 
-      const updateCategory = await ViewBannermodel.findOneAndUpdate(
+      const updateCategory = await OfferNumberModal.findOneAndUpdate(
         { _id: bannerId },
         findBanner,
         { new: true }
@@ -67,5 +65,5 @@ class ViewBanner {
   }
 }
 
-const ViewBannerController = new ViewBanner();
-module.exports = ViewBannerController;
+const OfferNumberBannerController = new OfferNumberBanner();
+module.exports = OfferNumberBannerController;

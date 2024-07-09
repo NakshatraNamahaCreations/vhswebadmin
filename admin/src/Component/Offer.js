@@ -20,7 +20,7 @@ export default function Offer() {
       selector: (row) => row.category,
     },
     {
-      name: "Offer",
+      name: "Deal of the week",
       selector: (row) => (
         <span>
           {" "}

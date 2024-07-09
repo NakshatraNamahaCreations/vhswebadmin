@@ -21,7 +21,7 @@ import VHSPromises from "./Component/Promises";
 import VHSComparison from "./Component/Comparison";
 import Review from "./Component/Review";
 import FAQ from "./Component/FAQ";
-import ViewDetailsBanner from "./Component/ViewBanner";
+import OfferNumberBanner from "./Component/OfferNumberBanner";
 
 function App() {
   return (
@@ -164,10 +164,10 @@ function App() {
           }
         />
         <Route
-          path="/viewbanner"
+          path="/offer-number-banner"
           element={
             <Layout>
-              <ViewDetailsBanner />
+              <OfferNumberBanner />
             </Layout>
           }
         />

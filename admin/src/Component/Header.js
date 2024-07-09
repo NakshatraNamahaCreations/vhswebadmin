@@ -13,7 +13,10 @@ export default function Header() {
           Home
         </a>
         {!user ? (
-          <FaRegUser className="col-md-1 text-center" style={{ color: "white" }} />
+          <FaRegUser
+            className="col-md-1 text-center"
+            style={{ color: "white" }}
+          />
         ) : (
           <span className="col-md-2 text-center text-white"> {user.email}</span>
         )}
@@ -193,6 +196,16 @@ export default function Header() {
           to="/faq"
         >
           FAQ
+        </Link>
+        <Link
+          className={`${
+            location.pathname === "/offer-number-banner"
+              ? "col-md-2 text-center active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 text-center navlink-btn mt-4 p-1 me-2"
+          }`}
+          to="/offer-number-banner"
+        >
+          Offer Number Banner
         </Link>
       </div>
     </>
