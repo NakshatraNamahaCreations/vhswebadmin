@@ -207,6 +207,17 @@ export default function Header() {
         >
           Offer Number Banner
         </Link>
+
+        <Link
+          className={`${
+            location.pathname === "/painting-banner"
+              ? "col-md-2 text-center active navlink-btn mt-4 p-1 me-2 mt-3"
+              : "col-md-2 text-center navlink-btn mt-4 p-1 me-2"
+          }`}
+          to="/painting-banner"
+        >
+          Painting Banner
+        </Link>
       </div>
     </>
   );

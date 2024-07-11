@@ -46,8 +46,11 @@ const Comparison = require("./route/Comparion");
 const ViewDetails = require("./route/offernumbanner");
 const Review = require("./route/Review");
 const FAQ = require("./route/FAQ");
+const PaintingBanner = require("./route/paintingbanner");
+
 app.use("/api", category);
 app.use("/api", customer);
+app.use("/api/paintingbanner", PaintingBanner);
 //user app
 app.use("/api/userapp", userauth);
 app.use("/api/userapp", uservice);

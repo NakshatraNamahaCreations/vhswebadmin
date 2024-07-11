@@ -22,6 +22,7 @@ import VHSComparison from "./Component/Comparison";
 import Review from "./Component/Review";
 import FAQ from "./Component/FAQ";
 import OfferNumberBanner from "./Component/OfferNumberBanner";
+import PaintingBanner from "./Component/PaintingBanner";
 
 function App() {
   return (
@@ -168,6 +169,14 @@ function App() {
           element={
             <Layout>
               <OfferNumberBanner />
+            </Layout>
+          }
+        />
+        <Route
+          path="/painting-banner"
+          element={
+            <Layout>
+              <PaintingBanner />
             </Layout>
           }
         />
