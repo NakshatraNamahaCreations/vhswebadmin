@@ -5,6 +5,9 @@ const webannerSchema = new mongoose.Schema(
     banner: {
       type: String,
     },
+    category: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

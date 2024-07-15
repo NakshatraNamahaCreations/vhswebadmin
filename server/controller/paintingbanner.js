@@ -1,13 +1,12 @@
 const PaintingBannermodel = require("../model/paintingbanner");
 
 class PaintingBanner {
-
   async postAddNewPaintingBanner(req, res) {
-    let { banner } = req.body;
+    let { banner, category } = req.body;
 
     try {
       let newbanner = new PaintingBannermodel({
-        banner,
+        banner,category
       });
 
       let save = newbanner.save();
@@ -34,12 +33,12 @@ class PaintingBanner {
     let id = req.params.id;
     const data = await PaintingBannermodel.deleteOne({ _id: id });
 
-    return res.json({ success: "Successfully" });
+    return res.json({ data: data, success: "Successfully" });
   }
   async updatebanner(req, res) {
     try {
       const bannerId = req.params.ccid;
-      const { banner } = req.body;
+      const { banner, category } = req.body;
 
       const findBanner = await PaintingBannermodel.findOne({
         _id: bannerId,
@@ -49,7 +48,7 @@ class PaintingBanner {
       }
 
       findBanner.banner = banner || findBanner.banner;
-
+      findBanner.category = category || findBanner.category;
       const updateCategory = await PaintingBannermodel.findOneAndUpdate(
         { _id: bannerId },
         findBanner,

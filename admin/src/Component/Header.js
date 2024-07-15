@@ -96,12 +96,12 @@ export default function Header() {
         <Link
           className={`${
             location.pathname === "/offer"
-              ? "col-md-1 text-center active navlink-btn  p-1 me-2"
-              : "col-md-1 text-center navlink-btn  p-1 me-2"
+              ? "col-md-2 text-center active navlink-btn  p-1 me-2 mt-4"
+              : "col-md-2 text-center navlink-btn  p-1 me-2 mt-4"
           }`}
           to="/offer"
         >
-          Offer
+          Deal of the week
         </Link>
 
         <Link

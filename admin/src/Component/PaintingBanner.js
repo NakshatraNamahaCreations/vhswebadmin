@@ -12,8 +12,12 @@ export default function PaintingBanner() {
   const [CateLink, setCateLink] = useState("");
   const [SelectCate, setSelectCate] = useState("");
   const [Edit, setEdit] = useState(null);
-
+  const [Category, setCategory] = useState([]);
   const columns = [
+    {
+      name: "Category",
+      selector: (row) => row.category,
+    },
     {
       name: "Painting Banner",
       selector: (row) => <img width={100} height={100} src={row?.banner} />,
@@ -33,17 +37,23 @@ export default function PaintingBanner() {
       ),
     },
   ];
-
-  const handleSaveOrUpdate = async () => {
+  const getcategory = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/paintingbanner/updatebanner/${
-        Edit ? Edit._id : SelectCate
-      }`;
+      const res = await axios.get("https://api.vijayhomeservice.com/api/getcategory");
+      setCategory(res.data.category);
+    } catch (error) {
+      console.log("Error in getcategory:", error);
+    }
+  };
+
+  const handleUpdate = async () => {
+    try {
       const config = {
-        url,
+        url: `https://api.vijayhomeservice.com/api/paintingbanner/updatebanner/${Edit._id}`,
         method: "put",
         data: {
           banner: CateLink,
+          category: SelectCate,
         },
       };
       const res = await axios(config);
@@ -60,9 +70,10 @@ export default function PaintingBanner() {
 
   useEffect(() => {
     getbanner();
+    getcategory();
     if (Edit) {
       setCateLink(Edit.banner);
-      setSelectCate(Edit._id);
+      setSelectCate(Edit.category);
     }
   }, [Edit]);
 
@@ -72,6 +83,7 @@ export default function PaintingBanner() {
         "https://api.vijayhomeservice.com/api/paintingbanner/getallpaintingbanner"
       );
       setbannerData(res.data.banner);
+      console.log(res.data.banner, "res.data.banner");
     } catch (error) {
       console.log("Error in getbanner:", error);
     }
@@ -99,15 +111,16 @@ export default function PaintingBanner() {
 
   const handleAddBanner = async () => {
     try {
-      const url = `https://api.vijayhomeservice.com/api/paintingbanner/addwebnewbanner`;
-
       const config = {
-        url,
+        url: "https://api.vijayhomeservice.com/api/paintingbanner/addwebpainbanner",
         method: "post",
         data: {
           banner: CateLink,
+          category: SelectCate,
         },
       };
+      console.log(SelectCate,"SelectCate")
+
       const res = await axios(config);
       if (res.status === 200) {
         alert("Banner added successfully");
@@ -145,6 +158,21 @@ export default function PaintingBanner() {
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
+            <Form.Label>Category</Form.Label>
+
+            <Form.Select
+              value={SelectCate}
+              onChange={(e) => setSelectCate(e.target.value)}
+            >
+              <option value="">Select category</option>
+              {Category?.map((Ele) => (
+                <option key={Ele.category} value={Ele.category}>
+                  {Ele.category}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+          <Form.Group className="mb-3">
             <Form.Label>Painting Banner Link</Form.Label>
             <Form.Control
               onChange={(e) => setCateLink(e.target.value)}
@@ -166,7 +194,7 @@ export default function PaintingBanner() {
             <Button
               className="col-md-2"
               variant="primary"
-              onClick={handleSaveOrUpdate}
+              onClick={handleUpdate}
             >
               update
             </Button>

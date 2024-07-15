@@ -5,7 +5,7 @@ const paintingbannerController = require("../controller/paintingbanner");
 
 
 router.post(
-  "/addwebnewbanner",
+  "/addwebpainbanner",
   paintingbannerController.postAddNewPaintingBanner
 );
 
